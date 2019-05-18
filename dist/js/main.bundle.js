@@ -10683,6 +10683,7 @@
 	            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	            window.onYouTubePlayerAPIReady = function () {
+
 	                _this.player = new YT.Player('player', {
 	                    height: '506',
 	                    width: '100%',
