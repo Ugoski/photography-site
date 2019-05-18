@@ -1,0 +1,76 @@
+#events
+    .box-overflow
+        position: relative
+
+        .swiper-events-container
+            overflow: hidden
+
+            .swiper-slide
+                border-radius: 3px
+                overflow: hidden
+
+                .outer-div
+                    background-size: cover
+                    background-position: center
+                    height: 420px
+                    transition: .3s
+
+                    .event-desc
+                        position: absolute
+                        right: 0
+                        left: 0
+                        bottom: 0
+                        height: 150px
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        justify-content: center
+                        background: linear-gradient(to top, rgba($body,1) 0%,rgba($body, .6) 70%,rgba($body,0) 100%)
+                        overflow: hidden
+                        transition: .3s
+
+                        &__name
+                            font-size: 30px
+                            margin-bottom: 5px
+                            text-align: center
+
+                        &__date
+                            font-size: 22px
+                            color: #ccc
+                            margin-bottom: 5px
+
+                        &__city
+                            font-size: 15px
+                            color: #ccc
+
+                &:hover
+                    .outer-div
+                        transform: scale(1.1)
+            
+                        @include sm-screen
+                            transform: scale(1)
+
+                    .event-desc
+                        bottom: -150px
+            
+                        @include sm-screen
+                            bottom: 0
+
+        .swiper-button-prev, .swiper-button-next
+            outline: none
+            font-size: 50px
+            background: none
+
+            @include sm-screen
+                display: none
+
+        .swiper-button-prev
+            left: -80px
+            transform: rotate(90deg)
+
+        .swiper-button-next
+            right: -80px
+            transform: rotate(-90deg)
+
+        .swiper-button-disabled
+            display: none

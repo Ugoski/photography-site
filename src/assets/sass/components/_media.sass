@@ -1,0 +1,120 @@
+#media
+    .media-grid
+        &__line
+            display: flex
+            width: 100%
+
+            @include sm-screen
+                display: block
+
+            &__item    
+                width: 25%
+                height: 16vw
+                overflow: hidden
+                position: relative
+                cursor: pointer
+
+                @include sm-screen
+                    display: block
+                    height: 400px
+
+                &__bgr  
+                    background-repeat: no-repeat
+                    background-position: center
+                    background-size: cover
+                    width: 100%
+                    height: 100%
+                    transition: .3s linear
+
+                &__play
+                    font-size: 80px
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    transform: translate3d(-50%, -50%, 0)
+                    z-index: 1
+
+                &:hover
+                    .media-grid__line__item__bgr
+                        transform: scale(1.1)
+
+                        @include sm-screen
+                            transform: scale(1)
+
+                &.video:after
+                    content: ''
+                    position: absolute
+                    top: 0
+                    right: 0
+                    bottom: 0
+                    left: 0
+                    background-color: rgba($body, .3) 
+
+        &__line--type2
+            .media-grid__line__item:nth-child(1)
+                width: 20%
+
+            .media-grid__line__item:nth-child(2)
+                width: 28%
+
+            .media-grid__line__item:nth-child(3)
+                width: 30%
+
+            .media-grid__line__item:nth-child(4)
+                width: 22%
+
+        &__line--type3
+            .media-grid__line__item:nth-child(1)
+                width: 30%
+
+            .media-grid__line__item:nth-child(2)
+                width: 22%
+
+            .media-grid__line__item:nth-child(3)
+                width: 28%
+
+            .media-grid__line__item:nth-child(4)
+                width: 20%
+
+    button
+        position: relative
+        margin: 75px auto 0
+
+        @include sm-screen
+            margin: 50px auto 0
+
+    &.-loading button
+        &:after
+            content: ''
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate3d(-50%, -50%, 0)
+            width: 20px
+            height: 20px
+            border: 2px solid $white
+            border-radius: 50%
+            border-top-color: transparent 
+            animation-name: loader
+            animation-duration: 1s
+            animation-iteration-count: infinite
+            animation-timing-function: linear
+
+        &:before
+            content: ''
+            position: absolute
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            background-color: $button
+
+@keyframes loader
+    0%   
+        transform: translate3d(-50%, -50%, 0) rotate(0deg)
+    100% 
+        transform: translate3d(-50%, -50%, 0)  rotate(360deg)
+
+body #media .media-grid .media-grid__line .media-grid__line__item
+    @include sm-screen
+        width: 100%

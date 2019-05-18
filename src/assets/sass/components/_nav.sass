@@ -1,0 +1,52 @@
+nav
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    width: 100vw
+    height: 100px
+    z-index: 100
+
+    @include sm-screen
+        height: 70px
+
+    .page-wrapper
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        a
+            transition: .25s
+            &:hover 
+                opacity: .8
+
+        .nav__social a
+            margin-right: 15px
+            font-size: 15px
+
+        .nav__menu
+            a
+                margin-left: 40px
+
+            @include sm-screen
+                display: none
+                
+        .nav__btn-menu
+            width: 30px
+            height: 20px
+            position: relative
+            flex-direction: column
+            justify-content: space-between
+            display: none
+
+            @include sm-screen
+                display: flex
+
+            .btn-line
+                width: 100%
+                height: 0px
+                border: 2px solid $white
+                border-radius: 2px
+
+    &.dark-bgr
+        background-color: rgba($body, .6) 

@@ -1,0 +1,57 @@
+#modal
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: rgba($body, .7)
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0
+    z-index: 200
+    opacity: 0
+    visibility: hidden
+    transition: .3s
+
+    .modal__wrapper
+        background-color: $body
+        width: 900px
+        height: 546.25px
+        border-radius: 3px
+        position: relative
+        transform: scale(.8)
+        transition: .3s
+
+        &__close
+            position: absolute
+            top: 0
+            right: 0
+            font-size: 30px
+            padding: 5px
+            cursor: pointer
+
+        #player
+            position: absolute
+            bottom: 0
+
+        &__image
+            position: absolute
+            bottom: 0
+            width: 100%
+            height: 506px
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center
+
+body.modal-active
+    overflow-y: scroll
+    left: 0
+    right: 0
+    
+    #modal
+        opacity: 1
+        visibility: visible
+
+        &__wrapper
+            transform: scale(1)

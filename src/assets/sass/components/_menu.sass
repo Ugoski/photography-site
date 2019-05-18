@@ -1,0 +1,62 @@
+#menu
+    display: none
+
+@include sm-screen
+    #menu
+        display: block
+        position: fixed
+        top: 0
+        right: 0
+        bottom: 0
+        left: 100vw
+        background-color: $body
+        z-index: 300
+        padding: 0
+        width: 100vw
+        transition: .3s
+
+        .menu__nav
+            height: 70px
+            border-bottom: 1px solid #333
+
+            .page-wrapper
+                position: relative
+
+                .menu__nav__btn-menu
+                    position: absolute
+                    top: 50%
+                    transform: translateY(-50%)
+                    right: 0
+                    width: 30px
+                    height: 20px
+                    display: flex
+                    flex-direction: column
+                    justify-content: space-between
+                    
+                    .btn-line
+                        width: 100%
+                        height: 0px
+                        border: 2px solid $white
+                        border-radius: 2px
+
+                    .btn-line-1
+                        transform: translateY(8px) rotate(45deg)
+
+                    .btn-line-2
+                        transform: translateY(-8px) rotate(-45deg)
+
+        .menu__body
+            margin-top: 20px
+
+        a
+            display: block
+            padding: 12px 0
+            font-size: 22px
+
+body.menu-active
+    overflow-y: scroll
+    left: 0
+    right: 0
+
+    #menu
+        left: 0

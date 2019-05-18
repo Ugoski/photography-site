@@ -1,0 +1,35 @@
+$small-width: 350px
+$medium-width: 376px
+$tablet-width: 768px
+$desktop-width: 1024px
+$browser-context: 15
+
+$content-width: 415
+
+@mixin xxs-screen
+  	@media (max-width: #{$small-width - 1px})
+   	@content
+
+@mixin xxm-screen
+  	@media (max-width: #{$medium-width - 1px})
+   	@content
+
+@mixin xs-screen
+  	@media (max-width: #{$tablet-width - 1px})
+   	@content
+
+@mixin sm-screen
+  	@media (max-width: #{$tablet-width})
+   	@content
+
+@mixin md-screen
+  	@media (min-width: #{$desktop-width})
+   	@content
+
+@mixin sm-screen-height
+  	@media (max-height: 415px)
+   	@content
+
+
+@function em($pixels, $context: $browser-context)
+	@return #{$pixels/$context}em
