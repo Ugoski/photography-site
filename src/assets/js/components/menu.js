@@ -32,8 +32,10 @@ class Menu {
         });
 
         this.$itemMob.on('click', function(event) {
-            that.$body.css('position', 'relative').css('top', 0);
             that.$body.removeClass('menu-active');
+            that.$body.css('position', 'relative').css('top', 0);
+            window.scrollTo(0, that.top);
+
             if (that.isAnimating) {
                 return false;
             } else {

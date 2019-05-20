@@ -7,7 +7,7 @@ class Events {
 	constructor() {
         if (events.length < 3) return false;
 
-        this.$container = $('#events');
+        this.$container = $('#gallery');
 
         this.createContainer();
         this.createSlider();
@@ -17,8 +17,12 @@ class Events {
 	}
     
     createContainer () {
-        this.template = `<div class="page-wrapper">
-                            <h2>PRÓXIMOS EVENTOS</h2>
+        this.template = `<div class="section-title-line"></div>
+                         <div class="page-wrapper">
+                            <h2>GALERIA</h2>
+                         </div>
+                         <div class="section-title-line mb-large"></div>
+                         <div class="page-wrapper">
                             <div class="box-overflow">
                                 <div class="swiper-events-container">
                                     <div class="swiper-wrapper">
@@ -42,21 +46,19 @@ class Events {
             slides += `<a href="${event.link}" ${event.link != 'javascript:;' ? 'target="_blank"' : ''} class="swiper-slide">
                             <div class="outer-div" style="background-image: url(img/${event.image});">
                                 <div class="event-desc">
-                                    <h3 class="event-desc__name">${event.name}</h3>
-                                    <span class="event-desc__date">${event.date}</span>
-                                    <span class="event-desc__city">${event.city}</span>
+                                    
                                 </div>
                             </div>
                        </a>`;
         });
-
+        
         return slides;
     }
     
     createSlider () {
         this.slider = new Swiper (this.$swiper, {
-            slidesPerView: 3,
-            spaceBetween: 100,
+            // slidesPerView: 3,
+            // spaceBetween: 100,
             allowTouchMove: false,
 
             navigation: {
@@ -66,7 +68,7 @@ class Events {
 
             breakpoints: {
                 768: {
-                    slidesPerView: 1,
+                    // slidesPerView: 1,
                     allowTouchMove: true
                 }
             }

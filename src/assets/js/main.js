@@ -5,7 +5,7 @@ window.$ = window.jQuery = $;
 // Components
 import Menu from './components/menu';
 import Modal from './components/modal';
-import Events from './components/events';
+import Gallery from './components/gallery';
 import Media from './components/media';
 import Swiper from 'swiper';
 window.Swiper = Swiper;
@@ -14,7 +14,7 @@ window.App = {
 	init() {
 		this.menu = new Menu();
 		this.modal = new Modal();
-		this.events = new Events();
+		this.gallery = new Gallery();
 		this.media = new Media();
 
 		$(window).on('scroll', () => {

@@ -48,7 +48,7 @@
 	__webpack_require__(1);
 
 	// JS
-	__webpack_require__(23);
+	__webpack_require__(21);
 
 
 /***/ }),
@@ -77,34 +77,32 @@
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _jquery = __webpack_require__(24);
+	var _jquery = __webpack_require__(22);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _menu = __webpack_require__(25);
+	var _menu = __webpack_require__(23);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _modal = __webpack_require__(26);
+	var _modal = __webpack_require__(24);
 
 	var _modal2 = _interopRequireDefault(_modal);
 
-	var _events = __webpack_require__(27);
+	var _gallery = __webpack_require__(30);
 
-	var _events2 = _interopRequireDefault(_events);
+	var _gallery2 = _interopRequireDefault(_gallery);
 
-	var _media = __webpack_require__(29);
+	var _media = __webpack_require__(27);
 
 	var _media2 = _interopRequireDefault(_media);
 
-	var _swiper = __webpack_require__(31);
+	var _swiper = __webpack_require__(29);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -123,7 +121,7 @@
 
 			this.menu = new _menu2.default();
 			this.modal = new _modal2.default();
-			this.events = new _events2.default();
+			this.gallery = new _gallery2.default();
 			this.media = new _media2.default();
 
 			(0, _jquery2.default)(window).on('scroll', function () {
@@ -146,7 +144,7 @@
 	App.init();
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10516,7 +10514,7 @@
 
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10567,8 +10565,10 @@
 	            });
 
 	            this.$itemMob.on('click', function (event) {
-	                that.$body.css('position', 'relative').css('top', 0);
 	                that.$body.removeClass('menu-active');
+	                that.$body.css('position', 'relative').css('top', 0);
+	                window.scrollTo(0, that.top);
+
 	                if (that.isAnimating) {
 	                    return false;
 	                } else {
@@ -10612,7 +10612,7 @@
 	exports.default = Menu;
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10729,96 +10729,8 @@
 	exports.default = Modal;
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// import data
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _events = __webpack_require__(28);
-
-	var _events2 = _interopRequireDefault(_events);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var Events = function () {
-	    function Events() {
-	        _classCallCheck(this, Events);
-
-	        if (_events2.default.length < 3) return false;
-
-	        this.$container = $('#events');
-
-	        this.createContainer();
-	        this.createSlider();
-	        this.$container.show();
-
-	        this.slider.update();
-	    }
-
-	    _createClass(Events, [{
-	        key: 'createContainer',
-	        value: function createContainer() {
-	            this.template = '<div class="page-wrapper">\n                            <h2>PR\xD3XIMOS EVENTOS</h2>\n                            <div class="box-overflow">\n                                <div class="swiper-events-container">\n                                    <div class="swiper-wrapper">\n                                        ' + this.getSlides() + '\n                                    </div>\n                                </div>\n                                <div class="swiper-button-prev icon-chevron-down"></div>\n                                <div class="swiper-button-next icon-chevron-down"></div>\n                            </div>\n                         </div>';
-
-	            this.$container.html(this.template);
-
-	            this.$swiper = $('.swiper-events-container', this.$container);
-	        }
-	    }, {
-	        key: 'getSlides',
-	        value: function getSlides() {
-	            var slides = '';
-
-	            _events2.default.map(function (event) {
-	                slides += '<a href="' + event.link + '" ' + (event.link != 'javascript:;' ? 'target="_blank"' : '') + ' class="swiper-slide">\n                            <div class="outer-div" style="background-image: url(img/' + event.image + ');">\n                                <div class="event-desc">\n                                    <h3 class="event-desc__name">' + event.name + '</h3>\n                                    <span class="event-desc__date">' + event.date + '</span>\n                                    <span class="event-desc__city">' + event.city + '</span>\n                                </div>\n                            </div>\n                       </a>';
-	            });
-
-	            return slides;
-	        }
-	    }, {
-	        key: 'createSlider',
-	        value: function createSlider() {
-	            this.slider = new Swiper(this.$swiper, {
-	                slidesPerView: 3,
-	                spaceBetween: 100,
-	                allowTouchMove: false,
-
-	                navigation: {
-	                    nextEl: '.swiper-button-next',
-	                    prevEl: '.swiper-button-prev'
-	                },
-
-	                breakpoints: {
-	                    768: {
-	                        slidesPerView: 1,
-	                        allowTouchMove: true
-	                    }
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'bindEvents',
-	        value: function bindEvents() {}
-	    }]);
-
-	    return Events;
-	}();
-
-	exports.default = Events;
-
-/***/ }),
-/* 28 */
+/* 25 */,
+/* 26 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10867,7 +10779,7 @@
 	exports.default = Events;
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10881,7 +10793,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _media = __webpack_require__(30);
+	var _media = __webpack_require__(28);
 
 	var _media2 = _interopRequireDefault(_media);
 
@@ -11002,7 +10914,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -11072,7 +10984,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -19028,6 +18940,95 @@
 
 	})));
 
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// import data
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _events = __webpack_require__(26);
+
+	var _events2 = _interopRequireDefault(_events);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Events = function () {
+	    function Events() {
+	        _classCallCheck(this, Events);
+
+	        if (_events2.default.length < 3) return false;
+
+	        this.$container = $('#gallery');
+
+	        this.createContainer();
+	        this.createSlider();
+	        this.$container.show();
+
+	        this.slider.update();
+	    }
+
+	    _createClass(Events, [{
+	        key: 'createContainer',
+	        value: function createContainer() {
+	            this.template = '<div class="section-title-line"></div>\n                         <div class="page-wrapper">\n                            <h2>GALERIA</h2>\n                         </div>\n                         <div class="section-title-line mb-large"></div>\n                         <div class="page-wrapper">\n                            <div class="box-overflow">\n                                <div class="swiper-events-container">\n                                    <div class="swiper-wrapper">\n                                        ' + this.getSlides() + '\n                                    </div>\n                                </div>\n                                <div class="swiper-button-prev icon-chevron-down"></div>\n                                <div class="swiper-button-next icon-chevron-down"></div>\n                            </div>\n                         </div>';
+
+	            this.$container.html(this.template);
+
+	            this.$swiper = $('.swiper-events-container', this.$container);
+	        }
+	    }, {
+	        key: 'getSlides',
+	        value: function getSlides() {
+	            var slides = '';
+
+	            _events2.default.map(function (event) {
+	                slides += '<a href="' + event.link + '" ' + (event.link != 'javascript:;' ? 'target="_blank"' : '') + ' class="swiper-slide">\n                            <div class="outer-div" style="background-image: url(img/' + event.image + ');">\n                                <div class="event-desc">\n                                    \n                                </div>\n                            </div>\n                       </a>';
+	            });
+
+	            return slides;
+	        }
+	    }, {
+	        key: 'createSlider',
+	        value: function createSlider() {
+	            this.slider = new Swiper(this.$swiper, {
+	                // slidesPerView: 3,
+	                // spaceBetween: 100,
+	                allowTouchMove: false,
+
+	                navigation: {
+	                    nextEl: '.swiper-button-next',
+	                    prevEl: '.swiper-button-prev'
+	                },
+
+	                breakpoints: {
+	                    768: {
+	                        // slidesPerView: 1,
+	                        allowTouchMove: true
+	                    }
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'bindEvents',
+	        value: function bindEvents() {}
+	    }]);
+
+	    return Events;
+	}();
+
+	exports.default = Events;
 
 /***/ })
 /******/ ]);
